@@ -40,6 +40,7 @@ public class ForumTestSuite {
         Assertions.assertEquals(1, forumUser.getPostsQuantity());
     }
 
+
     @DisplayName("Test2: " + "Checking if the number of comments is equal to 1 after adding a new comment.")
 
     @Test

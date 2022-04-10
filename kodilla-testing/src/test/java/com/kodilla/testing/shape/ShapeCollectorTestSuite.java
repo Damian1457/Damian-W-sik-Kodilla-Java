@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ShapeCollectorTestSuite {
 
 
+
     @DisplayName("addFigure")
     @Test
 
@@ -50,6 +51,8 @@ public class ShapeCollectorTestSuite {
         assertEquals(0, shapeCollector.getShapeCollection().size());
 
     }
+
+    @Nested
 
     @DisplayName("getFigure")
     @Test

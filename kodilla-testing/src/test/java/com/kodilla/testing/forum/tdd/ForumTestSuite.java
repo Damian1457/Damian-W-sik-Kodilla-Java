@@ -25,7 +25,6 @@ public class ForumTestSuite {
         testCounter++;
         System.out.println("Preparing to execute test #" + testCounter);
     }
-    @Nested
     @DisplayName("Test1: " + "To see if the number of posts is 1 after adding a new post.")
 
     @Test

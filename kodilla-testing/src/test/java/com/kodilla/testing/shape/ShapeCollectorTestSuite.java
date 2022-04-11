@@ -1,16 +1,12 @@
 package com.kodilla.testing.shape;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ShapeCollectorTestSuite {
 
@@ -18,7 +14,6 @@ public class ShapeCollectorTestSuite {
 
     @DisplayName("addFigure")
     @Test
-
     public void testAddFigure() {
 
         //Given
@@ -52,11 +47,25 @@ public class ShapeCollectorTestSuite {
 
     }
 
-    @Nested
+    @DisplayName("getFigure2")
+    @Test
+    public void testGetFigureNumber() {
+        
+        //Given
+        ShapeCollector shapeCollector = new ShapeCollector();
+        shapeCollector.addFigure(new Square(5));
+        
+        //When
+        boolean result = shapeCollector.removeFigure(new Square(4));
+        //Then
+        assertFalse(result);
+        assertEquals(1, shapeCollector.getShapeCollection().size());
+
+    }
+
 
     @DisplayName("getFigure")
     @Test
-
     public void testGetFigure() {
 
         //Given
@@ -71,7 +80,6 @@ public class ShapeCollectorTestSuite {
 
     @DisplayName("showFigures")
     @Test
-
     public void testShowFigures() {
 
         //Given

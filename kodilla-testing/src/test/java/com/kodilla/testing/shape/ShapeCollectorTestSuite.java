@@ -35,7 +35,7 @@ public class ShapeCollectorTestSuite {
 
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
-        Shape shape = new Square(4);
+        Shape shape = new Square(5);
         shapeCollector.addFigure(shape);
 
         //When
@@ -56,7 +56,7 @@ public class ShapeCollectorTestSuite {
         shapeCollector.addFigure(new Square(5));
         
         //When
-        boolean result = shapeCollector.removeFigure(new Square(4));
+        boolean result = shapeCollector.getFigure(new Square(4));
         //Then
         assertFalse(result);
         assertEquals(1, shapeCollector.getShapeCollection().size());

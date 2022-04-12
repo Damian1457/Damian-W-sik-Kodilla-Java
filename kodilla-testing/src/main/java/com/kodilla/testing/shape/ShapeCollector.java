@@ -16,8 +16,8 @@ public class ShapeCollector {
         shapeCollection.add(shape);
     }
 
-    public boolean removeFigure(Shape shape) {
-        return shapeCollection.remove(shape);
+    public Shape getFigure() {
+        return shapeCollection.remove(0);
 
     }
 
@@ -32,6 +32,7 @@ public class ShapeCollector {
     public void showFigures() {
         System.out.println(shapeCollection.toString());
     }
+
 
 
 }

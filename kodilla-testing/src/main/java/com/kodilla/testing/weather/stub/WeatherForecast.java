@@ -1,7 +1,6 @@
 package com.kodilla.testing.weather.stub;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class WeatherForecast {
     Temperatures temperatures;
@@ -10,15 +9,51 @@ public class WeatherForecast {
         this.temperatures = temperatures;
     }
 
-    public HashMap<Integer, Double> calculateForecast() {
-        HashMap<Integer, Double> resultMap = new HashMap<Integer, Double>();
+    public HashMap<String, Double> calculateForecast() {
+        HashMap<String, Double> resultMap = new HashMap<>();
 
-        for(Map.Entry<Integer, Double> temperature : temperatures.getTemperatures().entrySet()){
+        for(Map.Entry<String, Double> temperature : temperatures.getTemperatures().entrySet()){
 
             // adding 1 celsius degree to current value
             // as a temporary weather forecast
-            resultMap.put(temperature.getKey(), temperature.getValue() + 1);
+            resultMap.put(temperature.getKey(), temperature.getValue() + 1.0);
         }
         return resultMap;
+    }
+
+    public Double calculateArithmeticAverage() {
+
+        Double average = 0.0;
+        int total = 0;
+        double value= 0.0;
+
+        for(Map.Entry<String, Double> temperature : temperatures.getTemperatures().entrySet()) {
+            average = average + temperature.getValue();
+            total++;
+            value = average/total;
+        }
+        return Math.floor(value * 100) / 100;
+    }
+
+    public Double calculateMedianeAverage() {
+
+        Double mediane = 0.0;
+        List<Double> theList = new ArrayList<>();
+
+        for(Map.Entry<String, Double> temperature : temperatures.getTemperatures().entrySet()) {
+            theList.add(temperature.getValue());
+        }
+
+        Collections.sort(theList);
+
+        if(theList.size() % 2==0) {
+            mediane = theList.get((theList.size() -1) / 2+1);
+        }
+        else {
+            mediane = theList.get((theList.size() -1) / 2);
+        }
+
+        return mediane;
+
     }
 }

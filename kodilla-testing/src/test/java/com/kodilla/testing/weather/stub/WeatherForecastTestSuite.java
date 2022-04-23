@@ -1,12 +1,14 @@
 package com.kodilla.testing.weather.stub;
 
 
-import org.testng.Assert;
+
 import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 public class WeatherForecastTestSuite {
     @Test
-    public void testCalculateForecastWithStub() {
+    void testCalculateForecastWithStub() {
         //Given
         Temperatures temperatures = new TemperaturesStub();
         WeatherForecast weatherForecast = new WeatherForecast(temperatures);
@@ -15,6 +17,6 @@ public class WeatherForecastTestSuite {
         int quantityOfSensors = weatherForecast.calculateForecast().size();
 
         //Then
-        Assert.assertEquals(5, quantityOfSensors);
+        assertEquals(5, quantityOfSensors);
     }
 }

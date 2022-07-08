@@ -1,56 +1,51 @@
 package com.kodilla.stream.sand;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 public class SandStorageTestSuite {
 
     @Test
-    void testGetSandBeansQuantity() {
-
+    void  testGetSandBeansQuantity() {
         //Given
-        List<SandStorage> continents = new ArrayList<>();
-        continents.add(new Europe());
-        continents.add(new Africa());
-        continents.add(new Asia());
+        List<SandStorage> theContinents = new ArrayList<>();
+        theContinents.add(new Africa());
+        theContinents.add(new Europe());
+        theContinents.add(new Asia());
 
         //When
         BigDecimal totalSand = BigDecimal.ZERO;
-        for (SandStorage continent : continents) {
-            totalSand = totalSand.add(continent.getSandBeansQuantity());
+        for (SandStorage continents : theContinents) {
+            totalSand = totalSand.add(continents.getSandBeansQuantity());
         }
-
-        //Then
-        BigDecimal expectedSand = new BigDecimal("211111110903703703670");
-        assertEquals(totalSand, expectedSand);
-
-
-    }
-
-    @Test
-    void testGetSandBeansQuantityWithReduce() {
-
-        //Given
-        List<SandStorage> continents = new ArrayList<>();
-        continents.add(new Europe());
-        continents.add(new Asia());
-        continents.add(new Africa());
-
-        //When
-        BigDecimal totalSand = continents.stream()
-                .map(SandStorage::getSandBeansQuantity)
-                .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
 
         //Then
         BigDecimal expectedSand = new BigDecimal("211111110903703703670");
         assertEquals(expectedSand, totalSand);
 
+    }
 
+    @Test
+    void testGetSandBeansQuantityWithReduce() {
+        //Given
+        List<SandStorage> theContinents = new ArrayList<>();
+        theContinents.add(new Africa());
+        theContinents.add(new Europe());
+        theContinents.add(new Asia());
+
+        //When
+        BigDecimal totalSands = theContinents.stream()
+                .map(SandStorage::getSandBeansQuantity)
+                .reduce(BigDecimal.ZERO, (sum, curent) -> sum = sum.add(curent));
+
+        //Then
+        BigDecimal expectedSand = new BigDecimal("211111110903703703670");
+        assertEquals(totalSands, expectedSand);
     }
 
 }

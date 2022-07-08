@@ -1,17 +1,16 @@
-package com.kodilla.stream.invoice.simple;
+package com.kodilla.stream.invoicesimple2;
 
 public final class SimpleItem {
 
-    private final SimpleProduct product;
-
+    private final SompleProduct product;
     private final double quantity;
 
-    public SimpleItem(SimpleProduct product, double quantity) {
+    public SimpleItem(SompleProduct product, double quantity) {
         this.product = product;
         this.quantity = quantity;
     }
 
-    public SimpleProduct getProduct() {
+    public SompleProduct getProduct() {
         return product;
     }
 
@@ -20,7 +19,7 @@ public final class SimpleItem {
     }
 
     public double getValue() {
-        return product.getProductDouble() * quantity;
+        return product.getProductPrice() * quantity;
     }
 
 }

@@ -1,15 +1,14 @@
 package com.kodilla.stream;
 
 
+import com.kodilla.stream.repeat.forum.Forum;
+import com.kodilla.stream.repeat.forum.ForumUser;
 
-
-import com.kodilla.stream.forumuser.Forum;
-import com.kodilla.stream.forumuser.ForumUser;
-
-
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 
 public class StreamMain {
 
@@ -76,8 +75,7 @@ public class StreamMain {
 
 
 
-
-        Forum forum = new Forum();
+        /*Forum forum = new Forum();
 
 
         Map<String, ForumUser> resultMap = forum.getForumUserList().stream()
@@ -88,6 +86,58 @@ public class StreamMain {
 
         System.out.println(resultMap.size());
         resultMap.entrySet().stream().map(Map.Entry::getValue).forEach(System.out::println);
+*/
+
+
+        /* PeopleNew.getList().stream()
+                .map(String::toUpperCase)
+                .filter(s -> s.length() > 11)
+                .map(s -> s.substring(0, s.indexOf(' ') + 2) + ".")
+                .filter(s -> s.substring(0, 1).equals("M"))
+                .forEach(System.out::println);*/
+
+      /*  BookDirectoryNew bookDirectoryNew = new BookDirectoryNew();
+
+       List<BookNew> theListOfBooks = bookDirectoryNew.getList().stream()
+                .filter(book -> book.getYearOfPublication() > 2005)
+                .collect(Collectors.toList());
+
+       System.out.println(theListOfBooks);
+
+       theListOfBooks.stream()
+               .forEach(System.out::println);
+*/
+
+      /*  BookDirectoryNew bookDirectoryNew = new BookDirectoryNew();
+        Map<String,BookNew> theMapOfBooks = bookDirectoryNew.getList().stream()
+                .filter(book -> book.getYearOfPublication() > 2005)
+                .collect(Collectors.toMap(BookNew::getSignature, book -> book));
+
+        System.out.println(theMapOfBooks);
+        theMapOfBooks.entrySet().stream()
+                .map(entry -> entry.getKey() + " : " + entry.getValue())
+                .forEach(System.out::println);*/
+
+        /*BookDirectory theBookDirectory = new BookDirectory();
+        String theResultStringOfBooks =
+                theBookDirectory.getList().stream() // [1]
+                        .filter(book -> book.getYearOfPublication() > 2005)
+                        .map(Book::toString)
+                        .collect(Collectors.joining(",\n","<<",">>"));
+
+        System.out.println(theResultStringOfBooks);*/
+
+        Forum forum = new Forum();
+       Map<Integer, ForumUser> theMap = forum.getUserList().stream()
+                .filter(f -> f.getSex() == 'M')
+                .filter(f -> Period.between(f.getBirthDate(), LocalDate.now()).getYears() > 20)
+                .filter(f -> f.getPosts() >= 1)
+                .collect(Collectors.toMap(ForumUser::getId, forumUser -> forumUser));
+
+
+               theMap.entrySet().stream()
+                                .map(e -> e.getKey() +  ": " + e.getValue())
+                                        .forEach(System.out::println);
 
 
 

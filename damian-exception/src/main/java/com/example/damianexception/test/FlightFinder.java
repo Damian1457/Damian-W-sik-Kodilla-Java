@@ -1,22 +1,24 @@
 package com.example.damianexception.test;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class FlightFinder {
+    public Boolean findFlight(Flight flight) throws RouteNotFoundException {
+        Map<String, Boolean> theAirports = new HashMap<>();
+        theAirports.put("Warsaw", true);
+        theAirports.put("Vien", true);
+        theAirports.put("Milan", false);
+        theAirports.put("Saloniki", true);
 
-    public Boolean flightFinder(Flight flight) throws RouteNotFoundException {
-        Map<String, Boolean> flightMap = new HashMap<>();
-        flightMap.put("Warsaw", true);
-        flightMap.put("Dublin", true);
-        flightMap.put("Paris", false);
-        flightMap.put("Rome", true);
-
-       if (!flightMap.containsKey(flight.getArrivalAirport()))
-           return flightMap.get(flight.getArrivalAirport());
-        else
+        if (!theAirports.containsKey(flight.getArrivalAirport())) {
             throw new RouteNotFoundException();
-
+        }
+        if (!theAirports.containsKey(flight.getDepartureAirport())) {
+            throw new RouteNotFoundException();
+        }
+        return theAirports.get(flight.getDepartureAirport()) && theAirports.get(flight.getArrivalAirport());
 
     }
 

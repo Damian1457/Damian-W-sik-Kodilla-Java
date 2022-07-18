@@ -4,14 +4,13 @@ public class FlightFinderRunner {
 
     public static void main(String[] args) {
 
-        Flight flight = new Flight("Prague", "Vien");
         FlightFinder flightFinder = new FlightFinder();
-
         try {
-            flightFinder.flightFinder(flight);
+            flightFinder.findFlight(new Flight("Warsaw", "Stokholm"));
         } catch (RouteNotFoundException e) {
-            System.out.println("Flight could not be found");
+           System.out.println("sss" + e);
         }
+
 
     }
 

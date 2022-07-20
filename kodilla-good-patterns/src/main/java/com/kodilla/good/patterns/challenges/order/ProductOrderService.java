@@ -1,8 +1,43 @@
 package com.kodilla.good.patterns.challenges.order;
 
-public class ProductOrderService implements InformationOrderService {
-    @Override
-    public void emailInformation(User user) {
-        System.out.println("Your delivery is go to you");
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProductOrderService {
+
+    private InformationOrderService informationOrderService;
+    private PriceCalculatepriceCalculate priceCalculatepriceCalculate;
+    private ServiceService serviceService;
+
+    public ProductOrderService(InformationOrderService informationOrderService, PriceCalculatepriceCalculate priceCalculatepriceCalculate, ServiceService serviceService) {
+        this.informationOrderService = informationOrderService;
+        this.priceCalculatepriceCalculate = priceCalculatepriceCalculate;
+        this.serviceService = serviceService;
     }
+
+    public void process() {
+
+        List<Product> theProductList = new ArrayList<>();
+        theProductList.add(new Product("Milk", 10.0, 2));
+        theProductList.add(new Product("Milk", 10.0, 2));
+        theProductList.add(new Product("Milk", 10.0, 2));
+        theProductList.add(new Product("Milk", 10.0, 2));
+        theProductList.add(new Product("Milk", 10.0, 2));
+        theProductList.add(new Product("Milk", 10.0, 2));
+
+
+        double price = 0;
+
+        for (Product product : theProductList) {
+            if (serviceService.service(product)) {
+                price += priceCalculatepriceCalculate.price(product);
+            }
+        }
+
+        System.out.println("Price: " + price);
+        informationOrderService.emailInformation(new User("Damian", "Wąsik", "Pows"));
+
+
+    }
+
 }

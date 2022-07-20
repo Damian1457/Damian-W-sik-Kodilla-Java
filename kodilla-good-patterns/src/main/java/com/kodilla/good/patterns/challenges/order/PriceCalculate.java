@@ -2,9 +2,10 @@ package com.kodilla.good.patterns.challenges.order;
 
 
 
-public class PriceCalculate {
+public class PriceCalculate implements PriceCalculatepriceCalculate {
 
-    public double priceCalculate(Product product) {
+    @Override
+    public double price(Product product) {
         return product.getPrice() * product.getAmountOfProducts();
     }
 

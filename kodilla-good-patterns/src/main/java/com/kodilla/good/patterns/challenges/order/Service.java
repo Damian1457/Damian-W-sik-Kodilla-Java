@@ -1,10 +1,10 @@
 package com.kodilla.good.patterns.challenges.order;
 
-public class Service {
+public class Service implements ServiceService {
 
-    public boolean buyProduct(Product product) {
+    @Override
+    public boolean service(Product product) {
         System.out.println(product);
         return true;
     }
-
 }

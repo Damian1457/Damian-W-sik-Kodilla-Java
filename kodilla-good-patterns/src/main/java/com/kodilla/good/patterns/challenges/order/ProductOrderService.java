@@ -16,14 +16,15 @@ public class ProductOrderService {
     }
 
     public void process() {
+        Order order = new Order(new ArrayList<>(), new User("Damian Wąsik", "Damian", "Pow"));
+        List<Product> theProductList = order.getTheProducts();
+        theProductList.add(new Product("Milk", 10.0, 2));
+        theProductList.add(new Product("Milk", 10.0, 2));
+        theProductList.add(new Product("Milk", 10.0, 2));
+        theProductList.add(new Product("Milk", 10.0, 2));
+        theProductList.add(new Product("Milk", 10.0, 2));
 
-        List<Product> theProductList = new ArrayList<>();
-        theProductList.add(new Product("Milk", 10.0, 2));
-        theProductList.add(new Product("Milk", 10.0, 2));
-        theProductList.add(new Product("Milk", 10.0, 2));
-        theProductList.add(new Product("Milk", 10.0, 2));
-        theProductList.add(new Product("Milk", 10.0, 2));
-        theProductList.add(new Product("Milk", 10.0, 2));
+
 
 
         double price = 0;

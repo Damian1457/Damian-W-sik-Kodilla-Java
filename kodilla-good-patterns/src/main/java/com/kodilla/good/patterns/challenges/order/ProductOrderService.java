@@ -1,44 +1,26 @@
 package com.kodilla.good.patterns.challenges.order;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ProductOrderService {
 
-    private InformationOrderService informationOrderService;
-    private PriceCalculatepriceCalculate priceCalculatepriceCalculate;
-    private ServiceService serviceService;
+    private OrderServiceService orderServiceService;
+    private OrderInformationInformation orderInformationInformation;
+    private OrderRepositoryRepository orderRepositoryRepository;
 
-    public ProductOrderService(InformationOrderService informationOrderService, PriceCalculatepriceCalculate priceCalculatepriceCalculate, ServiceService serviceService) {
-        this.informationOrderService = informationOrderService;
-        this.priceCalculatepriceCalculate = priceCalculatepriceCalculate;
-        this.serviceService = serviceService;
+    public ProductOrderService(OrderServiceService orderServiceService, OrderInformationInformation orderInformationInformation, OrderRepositoryRepository orderRepositoryRepository) {
+        this.orderServiceService = orderServiceService;
+        this.orderInformationInformation = orderInformationInformation;
+        this.orderRepositoryRepository = orderRepositoryRepository;
     }
 
-    public void process() {
-        Order order = new Order(new ArrayList<>(), new User("Damian Wąsik", "Damian", "Pow"));
-        List<Product> theProductList = order.getTheProducts();
-        theProductList.add(new Product("Milk", 10.0, 2));
-        theProductList.add(new Product("Milk", 10.0, 2));
-        theProductList.add(new Product("Milk", 10.0, 2));
-        theProductList.add(new Product("Milk", 10.0, 2));
-        theProductList.add(new Product("Milk", 10.0, 2));
+    public OrderDto process(final OrderRequest orderRequest) {
+        boolean isRented = orderRepositoryRepository.order(orderRequest.getUser(), orderRequest.getNow());
 
-
-
-
-        double price = 0;
-
-        for (Product product : theProductList) {
-            if (serviceService.service(product)) {
-                price += priceCalculatepriceCalculate.price(product);
-            }
+        if (isRented) {
+            orderInformationInformation.inform(orderRequest.getUser());
+            orderServiceService.createOrder(orderRequest.getUser(), orderRequest.getNow());
+            return new OrderDto(orderRequest.getUser(), true);
+        } else {
+            return new OrderDto(orderRequest.getUser(), false);
         }
-
-        System.out.println("Price: " + price);
-        informationOrderService.emailInformation(new User("Damian", "Wąsik", "Pows"));
-
-
     }
-
 }
